@@ -13,7 +13,7 @@ func NewUserService(userRepository *repository.UserRepository) *UserService {
 }
 
 func (us UserService) CreateNewUser(user *repository.User) error {
-	if err := user.Save(); err != nil {
+	if err := us.repo.Save(user); err != nil {
 		return err
 	}
 	return nil

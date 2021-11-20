@@ -2,7 +2,6 @@ package repository
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/seefmitrais/go-rest-api-practice/internal/postgresql"
 )
 
 type UserRepository struct {
@@ -19,9 +18,9 @@ func NewUserRepository(database *gorm.DB) *UserRepository {
 	return &UserRepository{db: database}
 }
 
-func (u *User) Save() error {
+func (ur *UserRepository) Save(user *User) error {
 	var err error
-	err = postgresql.DB.Create(&u).Error
+	err = ur.db.Create(&user).Error
 	if err != nil {
 		return err
 	}
